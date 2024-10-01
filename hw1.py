@@ -2,15 +2,47 @@ import numpy as np
 
 ### Problem 1
 
-## Newton-Raphson Method
-xNR = np.array([-1.6]) # initial guess
-iterationsNR = 0
-for j in range(1000):
-    xNR = np.append(xNR, xNR[j]-( (xNR[j]*np.sin(3*xNR[j])-np.exp(xNR[j])) / (np.sin(3*xNR[j])+3*xNR[j]*np.cos(3*xNR[j])-np.exp(xNR[j])) ))
-    fc = xNR[j + 1]*np.sin(3*xNR[j + 1]) - np.exp(xNR[j + 1])
-    iterationsNR = iterationsNR + 1
-    if abs(fc) < 1e-6:
-        break
+import numpy as np 
+
+# Define the function f(x)
+def f(x):
+    return x * np.sin(3 * x) - np.exp(x)
+
+# Define the derivative f'(x)
+def df(x):
+    return np.sin(3 * x) + 3 * x * np.cos(3 * x) - np.exp(x)
+
+# Newton-Raphson method
+def newton_raphson(x0, tol=1e-6, max_iter=1000):
+    x = x0
+    x_values = [x]  # List to store x values
+    for i in range(max_iter):
+        fx = f(x)
+        dfx = df(x)
+        
+        if abs(dfx) < 1e-10:  # To avoid division by zero
+            print("Derivative is too small. Stopping.")
+            return None, x_values, i
+        
+        # Newton-Raphson formula
+        x_new = x - fx / dfx
+        x_values.append(x_new)  # Store the new x value
+        
+        # Check for convergence
+        if abs(x_new - x) < tol:
+            break
+        
+        x = x_new
+    
+    print("Max iterations reached without convergence.")
+    return x_values, len(x_values) - 1
+
+# Initial guess
+x0 = -1.6
+
+# Run the Newton-Raphson method
+xNR, iterationsNR = newton_raphson(x0)
+
 
 ## Bisection Method
 xr = -0.4; xl = -0.7 # initial endpoints
@@ -32,10 +64,12 @@ for j in range(0, 100):
 iterationArray = np.array([iterationsNR, iterationsBis])
 
 # save answers
-np.save('A1.npy', xNR)
-np.save('A2.npy', xmid)
-np.save('A3.npy', iterationArray)
-
+A1 = xNR
+A2 = xmid
+A3 = iterationArray
+print(A1)
+print(A2)
+print(A3)
 
 
 ### Problem 2
@@ -51,36 +85,36 @@ z = np.array([[1], [2], [-1]])
 
 ## Part a
 answerA = A + B
-np.save('A4.npy', answerA)
+A4 = answerA
 
 ## Part b
 answerB = 3*x - 4*y
-np.save('A5.npy', answerB)
+A5 = answerB.flatten()
 
 ## Part c
 answerC = np.dot(A, x)
-np.save('A6.npy', answerC)
+A6 = answerC.flatten()
 
 ## Part d
 answerD = np.dot(B, (x-y))
-np.save('A7.npy', answerD)
+A7 = answerD.flatten()
 
 ## Part e
 answerE = np.dot(D, x)
-np.save('A8.npy', answerE)
+A8 = answerE.flatten()
 
 ## Part f
 answerF = np.dot(D, y) + z
-np.save('A9.npy', answerF)
+A9 = answerF.flatten()
 
 ## Part g
 answerG = np.dot(A, B)
-np.save('A10.npy', answerG)
+A10 = answerG
 
 ## Part h
 answerH = np.dot(B, C)
-np.save('A11.npy', answerH)
+A11 = answerH
 
 ## Part i
 answerI = np.dot(C, D)
-np.save('A12.npy', answerI)
+A12 = answerI
