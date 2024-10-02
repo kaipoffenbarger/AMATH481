@@ -34,7 +34,6 @@ def newton_raphson(x0, tol=1e-6, max_iter=1000):
         
         x = x_new
     
-    print("Max iterations reached without convergence.")
     return x_values, len(x_values) - 1
 
 # Initial guess
@@ -67,10 +66,6 @@ iterationArray = np.array([iterationsNR, iterationsBis])
 A1 = xNR
 A2 = xmid
 A3 = iterationArray
-print(A1)
-print(A2)
-print(A3)
-
 
 ### Problem 2
 
@@ -79,9 +74,9 @@ A = np.array([[1, 2], [-1, 1]])
 B = np.array([[2, 0], [0, 2]])
 C = np.array([[2, 0, -3], [0, 0, -1]])
 D = np.array([[1, 2], [2, 3], [-1, 0]])
-x = np.array([[1], [0]])
-y = np.array([[0], [1]])
-z = np.array([[1], [2], [-1]])
+x = np.array([1, 0])
+y = np.array([0, 1])
+z = np.array([1, 2, -1])
 
 ## Part a
 answerA = A + B
@@ -89,24 +84,24 @@ A4 = answerA
 
 ## Part b
 answerB = 3*x - 4*y
-A5 = answerB.flatten()
+A5 = answerB
 
 ## Part c
 answerC = np.dot(A, x)
-A6 = answerC.flatten()
+A6 = answerC
 
 ## Part d
 answerD = np.dot(B, (x-y))
-A7 = answerD.flatten()
+A7 = answerD
 
 ## Part e
 answerE = np.dot(D, x)
-A8 = answerE.flatten()
+A8 = answerE
 
 
 ## Part f
 answerF = np.dot(D, y) + z
-A9 = answerF.flatten()
+A9 = answerF
 
 ## Part g
 answerG = np.dot(A, B)
