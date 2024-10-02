@@ -103,6 +103,7 @@ A7 = answerD.flatten()
 answerE = np.dot(D, x)
 A8 = answerE.flatten()
 
+
 ## Part f
 answerF = np.dot(D, y) + z
 A9 = answerF.flatten()
